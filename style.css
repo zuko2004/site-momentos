@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #1e3799, #0c2461 60%, #000814);
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 900px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== FOGOS ===== */
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #ffdd59;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #ffdd59;
+    animation: firework 1s infinite;
+    z-index: 0;
+}
+
+.firework:nth-child(1){ top:5%; left:10%; animation-delay:0s; }
+.firework:nth-child(2){ top:20%; left:80%; animation-delay:0.5s; }
+.firework:nth-child(3){ top:40%; left:30%; animation-delay:1s; }
+.firework:nth-child(4){ top:60%; left:70%; animation-delay:1.5s; }
+.firework:nth-child(5){ top:80%; left:20%; animation-delay:2s; }
+.firework:nth-child(6){ top:10%; left:50%; animation-delay:2.5s; }
+.firework:nth-child(7){ top:50%; left:5%; animation-delay:1.2s; }
+.firework:nth-child(8){ top:75%; left:90%; animation-delay:0.8s; }
+.firework:nth-child(9){ top:30%; left:60%; animation-delay:1.8s; }
+.firework:nth-child(10){ top:90%; left:45%; animation-delay:2.2s; }
+
+
+
+@keyframes firework {
+    0% { transform: scale(0); opacity: 1; }
+    70% { transform: scale(1.8); opacity: 0.9; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    padding: 40px 10px;
+    animation: headerDrop 1.5s ease;
+}
+
+@keyframes headerDrop {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    text-shadow: 0 0 25px #ffdd59;
+    animation: glowPulse 2.5s infinite alternate;
+}
+
+@keyframes glowPulse {
+    from { text-shadow: 0 0 10px #ffdd59; }
+    to { text-shadow: 0 0 35px #ffdd59; }
+}
+
+.subtitle {
+    opacity: 0.85;
+}
+
+/* ===== SLIDER ===== */
+.slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    background: #000;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== IMAGEM ===== */
+.slide img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    background: #000;
+}
+
+/* ===== CLASSES DE ANIMAÇÃO ===== */
+.animate-img {
+    animation: imageFadeZoom 1.2s ease forwards;
+}
+
+@keyframes imageFadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== LEGENDA ===== */
+.caption {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background: rgba(0,0,0,0.6);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    opacity: 0;
+}
+
+.animate-caption {
+    animation: captionFade 1s ease forwards;
+}
+
+@keyframes captionFade {
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ===== BOTÕES ===== */
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+    animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(255,221,89,0.4); }
+    50% { box-shadow: 0 0 20px rgba(255,221,89,0.6); }
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+    .slide img { max-height: 65vh; }
+    .caption { font-size: 0.85rem; padding: 8px 16px; }
+    .nav { font-size: 1.6rem; padding: 6px 10px; }
+}
